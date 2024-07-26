@@ -10,7 +10,10 @@ class CommmentsController extends Controller
   public function index($product_id)
   {
     $comments = Comment::where('product_id', $product_id)
-      ->simplePaginate(1);
+      ->join('users', 'users.id', '=', 'comments.user_id')
+      ->addSelect(['name', 'text', 'comments.id', 'comments.created_at'])
+      ->get();
+
 
     return response()->json(['comments' => $comments]);
   }
