@@ -23,4 +23,5 @@ Route::group([
 ], function ($router) {
   Route::get('/{product_id}', [CommmentsController::class, 'index']);
   Route::get('get_stars/{product_id}', [CommmentsController::class, 'getStars']);
+  Route::get('get_stars_statistics/{product_id}', [CommmentsController::class, 'getStatisticsOfStars']);
 });
