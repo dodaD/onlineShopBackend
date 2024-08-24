@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::resource('products', ProductsController::class);
+Route::group([
+  'middleware' => 'api',
+  'prefix' => 'products'
+], function ($router) {
+  Route::get('/get_you_might_like/{product_id}', [ProductsController::class, 'getYouMightLikeToo']);
+});
 
 Route::group([
   'middleware' => 'api',
@@ -24,4 +30,5 @@ Route::group([
   Route::get('/{product_id}', [CommmentsController::class, 'index']);
   Route::get('get_stars/{product_id}', [CommmentsController::class, 'getStars']);
   Route::get('get_stars_statistics/{product_id}', [CommmentsController::class, 'getStatisticsOfStars']);
+  Route::get('get_comments_with_stars/{product_id}/{stars}', [CommmentsController::class, 'getCommentsWithSpecificNumberOfStars']);
 });

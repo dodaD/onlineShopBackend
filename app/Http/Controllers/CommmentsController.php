@@ -40,4 +40,15 @@ class CommmentsController extends Controller
 
     return response()->json([$array_with_number_of_stars]);
   }
+
+  public function getCommentsWithSpecificNumberOfStars($product_id, $stars)
+  {
+    $comments = Comment::where('product_id', $product_id)
+      ->where('stars', '=', $stars)
+      ->join('users', 'users.id', '=', 'comments.user_id')
+      ->addSelect(['name', 'text', 'stars', 'comments.id', 'comments.created_at'])
+      ->paginate(2);
+
+    return response()->json(['comments' => $comments]);
+  }
 }
