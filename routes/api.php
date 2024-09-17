@@ -1,12 +1,9 @@
 <?php
 
-use App\Http\Controllers\AdditionalPicturesController;
 use App\Http\Controllers\CommmentsController;
 use App\Http\Controllers\ProductsController;
-use App\Models\AdditionalPicture;
-use Illuminate\Http\Request;
+use App\Http\Controllers\OptionController;
 use Illuminate\Support\Facades\Route;
-
 
 Route::resource('products', ProductsController::class);
 Route::group([
@@ -14,13 +11,14 @@ Route::group([
   'prefix' => 'products'
 ], function ($router) {
   Route::get('/get_you_might_like/{product_id}', [ProductsController::class, 'getYouMightLikeToo']);
+  Route::get('/get_specific_product/{product_id}', [ProductsController::class, 'getSpecificProduct']);
 });
 
 Route::group([
   'middleware' => 'api',
-  'prefix' => 'additional_pictures'
+  'prefix' => 'options'
 ], function ($router) {
-  Route::get('/{product_id}', [AdditionalPicturesController::class, 'getAdditionalPictures']);
+  Route::get('/{option_id}', [OptionController::class, 'getAnotherOption']);
 });
 
 Route::group([

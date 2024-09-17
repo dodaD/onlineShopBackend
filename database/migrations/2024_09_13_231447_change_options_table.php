@@ -11,8 +11,8 @@ return new class extends Migration
    */
   public function up(): void
   {
-    Schema::table('products', function ($table) {
-      $table->int()
+    Schema::table('options', function ($table) {
+      $table->boolean('is_default');
     });
   }
 
@@ -23,4 +23,4 @@ return new class extends Migration
   {
     //
   }
-};   
+};

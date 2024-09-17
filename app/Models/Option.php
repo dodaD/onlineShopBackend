@@ -4,13 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Product extends Model
+class Option extends Model
 {
   use HasFactory;
-  public function options()
+  public function pictures()
   {
-    return $this->hasMany(Option::class);
+    return $this->hasMany(AdditionalPicture::class);
   }
 }

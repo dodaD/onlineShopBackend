@@ -27,4 +27,18 @@ class ProductsController extends Controller
 
     return response()->json(['products' => $products]);
   }
+
+  public function getSpecificProduct($product_id)
+  {
+    $product = Product::where('id', $product_id)->first();
+    $options_for_product = $product->options;
+    foreach ($options_for_product as $option) {
+      if ($option->is_default) {
+        $option->pictures;
+        break;
+      }
+    }
+
+    return response()->json(['options_for_product' => $options_for_product]);
+  }
 }
